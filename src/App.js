@@ -12,6 +12,15 @@ function App() {
     event.preventDefault()
     const data = new FormData(event.target)
     const userGuess = parseInt( data.get('guess'))
+    // verify that a number has been entered
+    if ( isNaN(userGuess) ) {
+      setMessage('Only a number between 0-100 accepted')
+      return
+    }
+    else if( userGuess > 100) {
+      setMessage('Only a number between 0-100 accepted')
+      return
+    }
     // verify if user guess matches secret
     if( userGuess === secret ) {
       setMessage('You guessed correct! The number is '+ {secret})
