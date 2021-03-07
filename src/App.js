@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import './App.css';
 
 function generateRandom() {
@@ -6,41 +6,59 @@ function generateRandom() {
 }
 
 function App() {
-  const [message,setMessage] = useState('Have a guess')
-  const [secret,setSecret] = useState( generateRandom() )
+  const maxGuessCount = 5
+
+  const [message, setMessage] = useState('Have a guess')
+  const [secret, setSecret] = useState(generateRandom())
+  const [playing, setPlaying] = useState(true)
+  const [guessCount, setGuessCount ] = useState( maxGuessCount )
+
   const SubmitHandler = (event) => {
     event.preventDefault()
-    const data = new FormData(event.target)
-    const userGuess = parseInt( data.get('guess'))
-    // verify that a number has been entered
-    if ( isNaN(userGuess) ) {
-      setMessage('Only a number between 0-100 accepted')
-      return
+    if (playing === false) {
+      setSecret(generateRandom())
+      setPlaying(true)
+      setMessage('Have a guess')
+      setGuessCount( maxGuessCount )
     }
-    else if( userGuess > 100) {
-      setMessage('Only a number between 0-100 accepted')
-      return
+    else {
+      const data = new FormData(event.target)
+      event.target.reset()
+      const userGuess = parseInt(data.get('guess'))
+      // verify that a number has been entered
+      if (isNaN(userGuess)) {
+        setMessage('Only a number between 0-100 accepted')
+        return
+      }
+      else if (userGuess > 100) {
+        setMessage('Only a number between 0-100 accepted')
+        return
+      }
+      // verify if user guess matches secret
+      if (userGuess === secret) {
+        setMessage('You guessed correct! The number is ' + secret)
+        setPlaying(false)
+      }
+      else if (userGuess > secret) {
+        setMessage('The number is smaller than ' + userGuess)
+        setGuessCount( guessCount - 1 )
+      }
+      else if (userGuess < secret) {
+        setMessage('The number is larger than ' + userGuess)
+        setGuessCount( guessCount - 1 )
+      }
     }
-    // verify if user guess matches secret
-    if( userGuess === secret ) {
-      setMessage('You guessed correct! The number is '+ {secret})
-    }
-    else if(userGuess > secret ) {
-      setMessage('The number is smaller than '+ userGuess )
-    }
-    else if(userGuess < secret){
-      setMessage('The number is larger than '+ userGuess)
-    }
-    
+
+
   }
   return (
     <div className="App">
       <header>
-        <h1>Guess My Number</h1>
+        <h1>Guess My Number in {guessCount} guesses</h1>
       </header>
       <form id="form" onSubmit={SubmitHandler}>
-        <input type="text" name="guess" autoComplete="password" autoFocus="true"/>
-        <button type="submit">Submit</button>
+        <input type="text" name="guess" autoComplete="password" autoFocus="true" />
+        <button type="submit">{playing ? "Submit" : "Play again?"}</button>
       </form>
       <p className="message">{message}</p>
     </div>
