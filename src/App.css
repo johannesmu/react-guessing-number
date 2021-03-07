@@ -62,6 +62,9 @@ header h1 {
   outline: none;
   background-color: var(--sky-blue-darker);
 }
+#form button.play {
+  background-color: red;
+}
 .message {
   background-color: black;
   margin: 0;
