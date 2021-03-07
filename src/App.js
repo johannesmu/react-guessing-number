@@ -6,12 +6,19 @@ function generateRandom() {
 }
 
 function App() {
-  const maxGuessCount = 5
+  const maxGuessCount = 6
 
-  const [message, setMessage] = useState('Have a guess')
+  const [message, setMessage] = useState('You have '+ maxGuessCount + ' guesses')
   const [secret, setSecret] = useState(generateRandom())
   const [playing, setPlaying] = useState(true)
   const [guessCount, setGuessCount ] = useState( maxGuessCount )
+
+  useEffect( () => {
+    if( guessCount === 0 ) {
+      setMessage( 'Out of guesses')
+      setPlaying( false )
+    }
+  }, [guessCount] )
 
   const SubmitHandler = (event) => {
     event.preventDefault()
@@ -48,17 +55,23 @@ function App() {
         setGuessCount( guessCount - 1 )
       }
     }
-
-
   }
   return (
     <div className="App">
       <header>
-        <h1>Guess My Number in {guessCount} guesses</h1>
+        <h1>Guess My Number</h1>
       </header>
       <form id="form" onSubmit={SubmitHandler}>
-        <input type="text" name="guess" autoComplete="password" autoFocus="true" />
-        <button type="submit">{playing ? "Submit" : "Play again?"}</button>
+        <input 
+          type="text" 
+          name="guess" 
+          autoComplete="password" 
+          autoFocus="true" 
+          disabled={ playing ? false : true }
+        />
+        <button type="submit" className={ playing ? "" : "play"}>
+          { playing ? guessCount + ( guessCount > 1 ? " Guesses" : " Guess") : "Play again? " }
+        </button>
       </form>
       <p className="message">{message}</p>
     </div>
