@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-guessing-number/static/css/main.be80c98e.chunk.css",
+    "main.js": "/react-guessing-number/static/js/main.685f6bf0.chunk.js",
+    "main.js.map": "/react-guessing-number/static/js/main.685f6bf0.chunk.js.map",
+    "runtime-main.js": "/react-guessing-number/static/js/runtime-main.0032b81e.js",
+    "runtime-main.js.map": "/react-guessing-number/static/js/runtime-main.0032b81e.js.map",
+    "static/js/2.d99c5e6c.chunk.js": "/react-guessing-number/static/js/2.d99c5e6c.chunk.js",
+    "static/js/2.d99c5e6c.chunk.js.map": "/react-guessing-number/static/js/2.d99c5e6c.chunk.js.map",
+    "static/js/3.8ad80779.chunk.js": "/react-guessing-number/static/js/3.8ad80779.chunk.js",
+    "static/js/3.8ad80779.chunk.js.map": "/react-guessing-number/static/js/3.8ad80779.chunk.js.map",
+    "index.html": "/react-guessing-number/index.html",
+    "static/css/main.be80c98e.chunk.css.map": "/react-guessing-number/static/css/main.be80c98e.chunk.css.map",
+    "static/js/2.d99c5e6c.chunk.js.LICENSE.txt": "/react-guessing-number/static/js/2.d99c5e6c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0032b81e.js",
+    "static/js/2.d99c5e6c.chunk.js",
+    "static/css/main.be80c98e.chunk.css",
+    "static/js/main.685f6bf0.chunk.js"
+  ]
+}
