@@ -23,6 +23,9 @@ body {
   max-width: 800px;
   margin: auto;
 }
+header {
+  text-align: center;
+}
 
 header h1 {
   margin: 0;
@@ -70,4 +73,5 @@ header h1 {
   margin: 0;
   padding: 0.5em;
   color: var(--light-orange);
+  text-align: center;
 }
